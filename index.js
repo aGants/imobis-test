@@ -42,9 +42,12 @@ function translatetoEnglish(text) {
 function translatetoRussian(text) {
   for (var i = 0; i < text.length; i++) {
     for (var key in translit) {
-      if (text.charAt(i) == translit[key]) {
-        newtext += key;
-        console.log(key);
+      switch (translit[key]) {
+        case text.charAt(i) + text.charAt(i+1) + text.charAt(i+2): newtext += key;
+        break;
+        case text.charAt(i) + text.charAt(i+1): newtext += key;
+        break;
+        case text.charAt(i): newtext += key; break;
       }
     }
   }
