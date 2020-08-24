@@ -23,10 +23,21 @@ function translate() {
     'п': 'p',  'р': 'r',  'с': 's',  'т': 't',  'у': 'u',  'ф': 'f', 
     'х': 'h',  'ц': 'ts', 'ч': 'ch', 'ш': 'sh', 'щ': 'sch','ъ': "'",
     'ы': 'i',  'ь': "'",  'э': 'e',  'ю': 'u',  'я': 'ya', 
-    '"': '«',  '»': '"',  '–': '-',  '—': '-',  '№': '#',  '`': "'"
+    '"': '«',  '»': '"',  '–': '-',  '—': '-',  '№': '#',  '`': "'", ' ' : ' '
   };
+
   for (var i=0; i < text.length; i++) {
-    newtext += translit[text.charAt(i)];
+    if (translit[text.charAt(i)] != undefined) {
+      newtext += translit[text.charAt(i)];
+    } else {
+      try {
+        char = translit[text.charAt(i).toLowerCase()].toUpperCase();
+        newtext += char;
+      }
+      catch {
+        newtext += text.charAt(i);
+      }
+    }
   }
   document.querySelector('.message').value = newtext;
 }
