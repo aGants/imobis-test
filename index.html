@@ -1,23 +1,24 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Тестовое задание</title>
 </head>
 <body>
-  <div class="text">
+  <form name='form'>
     <label for="text">Введите сообщение:</label>
-    <input type="text" name='text'>
-    <input type="checkbox" name="transliteration">транслитерировать
-  </div>
+    <input type="text" name="message" class='message' value="">
+    <input type="checkbox" name="trans">транслитерировать
 
-  <div class="symbols">
-    <h3>Кол-во символов:</h3>
-  </div>
+    <div class="symbols">
+      <h3>Кол-во символов:</h3> <span class="symbols__number">0</span>
+    </div>
 
-  <div class="sms">
-    <h3>Кол-во смс:</h3>
-  </div>
+      <div class="sms">
+        <h3>Кол-во смс:</h3> <span></span>
+    </div>
+  </form>
+  <script src="index.js"></script>
 </body>
 </html>
