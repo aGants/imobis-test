@@ -12,22 +12,30 @@ const translit = {
 };
 
 document.addEventListener('keyup', function (event) {
-  message = document.querySelector('.message').value;
-  document.querySelector('.symbols__number').innerHTML = message.length;
+  symbolCount();
 });
+
 
 check.addEventListener('change', function (event) {
   message = document.querySelector('.message');
   text = message.value;
   newtext = '';
   if (check.checked == true) {
-    translatetoEnglish(text);
-  } else translatetoRussian(text);
+    translateToEnglish(text);
+  } else translateToRussian(text);
   document.querySelector('.message').value = '';
   document.querySelector('.message').value = newtext;
+  symbolCount();
 });
 
-function translatetoEnglish(text) {
+
+function symbolCount() {
+  message = document.querySelector('.message').value;
+  document.querySelector('.symbols__number').innerHTML = message.length;
+}
+
+
+function translateToEnglish(text) {
   for (var i=0; i < text.length; i++) {
     if (translit[text.charAt(i)] != undefined) {
       newtext += translit[text.charAt(i)];
@@ -41,7 +49,8 @@ function translatetoEnglish(text) {
   }
 }
 
-function translatetoRussian(text) {
+
+function translateToRussian(text) {
   skip = 0;
   for (var i = 0; i < text.length; i++) {
     if (skip > 0) { 
