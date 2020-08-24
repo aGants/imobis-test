@@ -15,8 +15,9 @@ document.addEventListener('keyup', function (event) {
 });
 
 check.addEventListener('change', function (event) {
-  let message = document.querySelector('.message');
-  let text = message.value;
+  message = document.querySelector('.message');
+  text = message.value;
+  newtext = '';
   if (check.checked == true) {
     translatetoEnglish(text);
   } else translatetoRussian(text);
