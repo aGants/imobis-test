@@ -1,5 +1,9 @@
-let check = document.querySelector('.checkbox');
+let check   = document.querySelector('.checkbox');
 let newtext = '';
+let sms     = 1;
+const latinlenght  = 153;
+const kirilllenght = 67;
+
 const translit = {
   'а': 'a',  'б': 'b',  'в': 'v',   'г': 'g',  'д': 'd', 
   'е': 'e',  'ё': 'yo', 'ж': 'zh',  'з': 'z',  'и': 'i',
@@ -13,6 +17,7 @@ const translit = {
 
 document.addEventListener('keyup', function (event) {
   symbolCount();
+  smsCount();
 });
 
 
@@ -26,6 +31,7 @@ check.addEventListener('change', function (event) {
   document.querySelector('.message').value = '';
   document.querySelector('.message').value = newtext;
   symbolCount();
+  smsCount();
 });
 
 
@@ -34,6 +40,13 @@ function symbolCount() {
   document.querySelector('.symbols__number').innerHTML = message.length;
 }
 
+function smsCount() {
+  symbols = message.length;
+  if (check.checked == true) {
+    sms = Math.ceil(symbols/5);
+  } else {sms = Math.ceil(symbols/5);} 
+  document.querySelector('.sms__number').innerHTML = sms;
+}
 
 function translateToEnglish(text) {
   for (var i=0; i < text.length; i++) {
