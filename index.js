@@ -12,6 +12,13 @@ const translit = {
   'с': 's',  'ц': 'ts', 'т': 't',   'у': 'u',  'ф': 'f',  
   'х': 'h',  'ч': 'ch', 'ъ': "'",   'ы': 'i',  'ь': "'",  
   'э': 'e',  'ю': 'u',  'я': 'ya', 
+  'А': 'A', 'Б': 'B', 'В': 'V', 'Г': 'G', 'Д': 'D',
+  'Е': 'E', 'Ё': 'YO', 'Ж': 'Zh', 'З': 'Z', 'И': 'I',
+  'Й': 'Y', 'К': 'K', 'Л': 'L', 'М': 'M', 'Н': 'N',
+  'О': 'O', 'П': 'P', 'Р': 'R', 'Щ': 'Sch', 'Ш': 'Sh',
+  'С': 'S', 'Ц': 'Ts', 'Т': 'T', 'У': 'U', 'Ф': 'F',
+  'Х': 'H', 'Ч': 'Ch', 'Ъ': "'", 'Ы': 'I', 'Ь': "'",
+  'Э': 'E', 'Ю': 'U', 'Я': 'Ya',
   '"': '«',  '»': '"',  '–': '-',  '—': '-',  '№': '#',  '`': "'"
 };
 
@@ -43,8 +50,8 @@ function symbolCount() {
 function smsCount() {
   symbols = message.length;
   if (check.checked == true) {
-    sms = Math.ceil(symbols/5);
-  } else {sms = Math.ceil(symbols/5);} 
+    sms = Math.ceil(symbols/latinlenght);
+  } else {sms = Math.ceil(symbols/kirilllenght);} 
   document.querySelector('.sms__number').innerHTML = sms;
 }
 
@@ -52,39 +59,31 @@ function translateToEnglish(text) {
   for (var i=0; i < text.length; i++) {
     if (translit[text.charAt(i)] != undefined) {
       newtext += translit[text.charAt(i)];
-    } else {
-      try {
-        char = translit[text.charAt(i).toLowerCase()].toUpperCase();
-        newtext += char;
-      }
-      catch (err) { newtext += text.charAt(i); }
-    }
+    } else newtext += text.charAt(i); 
   }
 }
-
 
 function translateToRussian(text) {
   skip = 0;
   for (var i = 0; i < text.length; i++) {
+    char = '';
     if (skip > 0) { 
       skip=skip-1;
       continue; }
-    char = '';
     for (var key in translit) {
       if (char == '') {
-        one = text.charAt(i).toLowerCase();
+        one = text.charAt(i);
         two = one + text.charAt(i + 1);
-        three = one + text.charAt(i + 1) + text.charAt(i + 2);
+        three = two + text.charAt(i + 2);
         switch (translit[key]) {
-          case three: char = key; skip = 2;
-          break;
-          case two: char = key;
-          skip = 1;
-          break;
+          case three: char = key; skip = 2; break;
+          case two: char = key; skip = 1; break;
           case one: char = key; skip = 0; break;
         }
         newtext += char;
       } else break;
     }
+    if (char == '') { 
+      newtext += text.charAt(i); }
   }
 }
