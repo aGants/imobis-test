@@ -1,3 +1,6 @@
+<?php
+include('index.php');
+?>
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -10,7 +13,7 @@
   <form name='form' method="post" action='index.php'>
   <div class="block">
     <div class="block-input">
-      <textarea type="text" name="message" class='message' value=""></textarea>
+      <textarea type="text" name="message" class='message' value="" id='message'></textarea>
       <label class="translate"><input type="checkbox" name="trans" class='checkbox'>
         транслитерировать</label>
     </div>
@@ -20,7 +23,7 @@
     </div>
     
     <div class="block-sms">
-      <b>Смс:</b> <span class="sms__number">1</span>
+      <b>Смс:</b> <span class="sms__number">0</span>
     </div>
     
     <input type="submit" class="submit">
