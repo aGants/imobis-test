@@ -3,23 +3,28 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
   <title>Тестовое задание</title>
 </head>
 <body>
   <form name='form' method="post" action='index.php'>
-    <label for="text">Введите сообщение:</label>
-    <input type="text" name="message" class='message' value="">
-    <input type="checkbox" name="trans" class='checkbox'>транслитерировать
-    <input type="submit" class="submit">
-
-    <div class="symbols">
-      <h3>Кол-во символов:</h3> <span class="symbols__number">0</span>
-    </div>
-
-      <div class="sms">
-        <h3>Кол-во смс:</h3> <span class="sms__number">1</span>
+  <div class="block">
+    <div class="block-input">
+      <textarea type="text" name="message" class='message' value=""></textarea>
+      <label class="translate"><input type="checkbox" name="trans" class='checkbox'>
+        транслитерировать</label>
     </div>
     
+    <div class="block-symbols">
+      <b>Символов:</b> <span class="symbols__number">0</span>
+    </div>
+    
+    <div class="block-sms">
+      <b>Смс:</b> <span class="sms__number">1</span>
+    </div>
+    
+    <input type="submit" class="submit">
+  </div>
   </form>
   <script src="index.js"></script>
 </body>
